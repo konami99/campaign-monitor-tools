@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { Handler, Context } from 'aws-lambda';
 import Client from './models/client';
 import Campaign from './models/campaign';
@@ -34,25 +33,9 @@ export const getScheduledCampaigns: Handler = async (_event: any, _context: Cont
   const campaignsOverThreshold = campaigns.filter(campaignMonitorService.campaignFilter);
   campaignsOverThreshold.sort(campaignMonitorService.sortCampaigns);
   
-  await axios
-  .create({
-    baseURL: slackService.baseURL(),
-    headers: { 'Content-type':' application/json' }
-  })
-  .post(
-    await slackService.slackWebhookPathAP(),
-    {
-      "blocks": [
-        {
-          "type": "section",
-          "text": {
-            "type": "mrkdwn",
-            "text": `\`\`\`${campaignMonitorService.serializeCampaigns(campaignsOverThreshold)}\`\`\``
-          }
-        }
-      ]
-    }
-  )
+  await slackService.post(
+    campaignMonitorService.serializeCampaigns(campaignsOverThreshold)
+  );
   
   return {
     statusCode: 200,
