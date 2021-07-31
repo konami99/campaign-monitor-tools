@@ -211,3 +211,65 @@ name3\n\
     expect(await campaignMonitorService.serializeCampaigns(campaigns)).toEqual(expectedResult);
   });
 });
+
+describe('toCampaignObject', () => {
+  const client = {
+    clientID: 'id123',
+    name: 'client1'
+  }
+  const campaigns = [
+    {
+      ScheduledTimeZone: '(GMT+10:00) Canberra, Melbourne, Sydney',
+      DateScheduled: '2021-07-19 12:30:00',
+      CampaignID: '78034b9198c7f3d62d1c3148191dc633',
+      Name: 'DJ21 - F2F 4 - Has Raised - 19.07.21'
+    },
+    {
+      ScheduledTimeZone: '(GMT+10:00) Canberra, Melbourne, Sydney',
+      DateScheduled: '2021-07-18 10:00:00',
+      CampaignID: '78034b9198c7f3d62d1c3148191dc911',
+      Name: 'DJ20 - F2F 4 - Has Raised - 19.07.21'
+    },
+    {
+      ScheduledTimeZone: '(GMT+10:00) Canberra, Melbourne, Sydney',
+      DateScheduled: '2021-07-17 02:30:00',
+      CampaignID: '78034b9198c7f3d62d1c3148191dc456',
+      Name: 'DJ19 - F2F 4 - Has Raised - 19.07.21'
+    },
+  ]
+
+  it('converts to campaign objects', async () => {
+    expect(campaignMonitorService.toCampaignObject(client, campaigns)).toEqual([
+      {
+        "campaignID": "78034b9198c7f3d62d1c3148191dc633",
+        "clientName": "client1",
+        "dateScheduled": "2021-07-19 12:30:00",
+        "dateScheduledObject": DateTime.fromISO("2021-07-19T12:30:00+10:00", { setZone: true }),
+        "localDateScheduledObject": DateTime.fromISO("2021-07-19T12:30:00+10:00", { setZone: true }).setZone('UTC+10'),
+        "name": "DJ21 - F2F 4 - Has Raised - 19.07.21",
+        "scheduledTimeZone": "(GMT+10:00) Canberra, Melbourne, Sydney",
+        "timezoneOffset": "+10:00"
+      },
+      {
+        "campaignID": "78034b9198c7f3d62d1c3148191dc911",
+        "clientName": "client1",
+        "dateScheduled": "2021-07-18 10:00:00",
+        "dateScheduledObject": DateTime.fromISO("2021-07-18T10:00:00+10:00", { setZone: true }),
+        "localDateScheduledObject": DateTime.fromISO("2021-07-18T10:00:00+10:00", { setZone: true }).setZone('UTC+10'),
+        "name": "DJ20 - F2F 4 - Has Raised - 19.07.21",
+        "scheduledTimeZone": "(GMT+10:00) Canberra, Melbourne, Sydney",
+        "timezoneOffset": "+10:00"
+      },
+      {
+        "campaignID": "78034b9198c7f3d62d1c3148191dc456",
+        "clientName": "client1",
+        "dateScheduled": "2021-07-17 02:30:00",
+        "dateScheduledObject": DateTime.fromISO("2021-07-17T02:30:00+10:00", { setZone: true }),
+        "localDateScheduledObject": DateTime.fromISO("2021-07-17T02:30:00+10:00", { setZone: true }).setZone('UTC+10'),
+        "name": "DJ19 - F2F 4 - Has Raised - 19.07.21",
+        "scheduledTimeZone": "(GMT+10:00) Canberra, Melbourne, Sydney",
+        "timezoneOffset": "+10:00"
+      }
+    ]);
+  })
+});
