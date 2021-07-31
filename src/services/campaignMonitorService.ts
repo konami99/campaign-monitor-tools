@@ -21,33 +21,33 @@ export default class CampaignMonitorService {
   public static async getClients() {
     const apiKey = await ssmService.getParameter('CAMPAIGN_MONITOR_ADMIN_API_KEY');
     const result = await axios
-                   .create({
-                     baseURL: this.baseURL(),
-                     headers: { 'Authorization': `Basic ${apiKey}` }
-                   })
-                   .get('/api/v3.2/clients.json');
+                    .create({
+                      baseURL: this.baseURL(),
+                      headers: { 'Authorization': `Basic ${apiKey}` }
+                    })
+                    .get('/api/v3.2/clients.json');
     return result.data;
   }
 
   public static async getScheduledCampaigns(clientID: string) {
     const apiKey = await ssmService.getParameter('CAMPAIGN_MONITOR_ADMIN_API_KEY');
     const result = await axios
-                   .create({
-                     baseURL: this.baseURL(),
-                     headers: { 'Authorization': `Basic ${apiKey}` }
-                   })
-                   .get(`/api/v3.2/clients/${clientID}/scheduled.json`);
+                    .create({
+                      baseURL: this.baseURL(),
+                      headers: { 'Authorization': `Basic ${apiKey}` }
+                    })
+                    .get(`/api/v3.2/clients/${clientID}/scheduled.json`);
     return result.data;
   }
 
   public static async getCampaignDetails(campaignID: string) {
     const apiKey = await await ssmService.getParameter('CAMPAIGN_MONITOR_ADMIN_API_KEY');
     const result = await axios
-                   .create({
-                     baseURL: this.baseURL(),
-                     headers: { 'Authorization': `Basic ${apiKey}` }
-                   })
-                   .get(`/api/v3.2/campaigns/${campaignID}/summary.json`);
+                    .create({
+                      baseURL: this.baseURL(),
+                      headers: { 'Authorization': `Basic ${apiKey}` }
+                    })
+                    .get(`/api/v3.2/campaigns/${campaignID}/summary.json`);
     return result.data;
   }
 
