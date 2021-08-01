@@ -6,7 +6,7 @@ provider:
   stage: production
   memorySize: 512
   timeout: 900
-  region: ap-southeast-2
+  region: us-west-2
   runtime: nodejs14.x
   iam:
     role:
@@ -28,4 +28,4 @@ functions:
   getScheduledCampaigns:
     handler: src/handler.getScheduledCampaigns
     events:
-      - schedule: rate(1 minute)
+      - schedule: rate(1 hour)

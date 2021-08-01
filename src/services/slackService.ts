@@ -11,7 +11,7 @@ export default class slackService {
   }
 
   public static async post(message: string) {
-    message = message || 'no campaigns';
+    message = message || 'No scheduled campaigns (lower threshold: 1,000)\n';
     console.log(message);
     await axios
       .create({

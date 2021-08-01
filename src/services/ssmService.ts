@@ -7,6 +7,6 @@ export default class SsmService {
   }
 
   private static ssm(): SSM {
-    return new SSM({ region: 'ap-southeast-2' });
+    return new SSM({ region: 'us-west-2' });
   }
 }
