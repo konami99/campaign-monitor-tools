@@ -90,13 +90,13 @@ describe('sortCampaigns', () => {
   it('sorts campaigns from latest to oldest', () =>{
     expect(campaigns.sort(campaignMonitorService.sortCampaigns)).toEqual([
       {
-        clientName: 'client3',
-        dateScheduled: 'date3',
-        scheduledTimeZone: 'tz3',
-        campaignID: 'id3',
-        name: 'name3',
-        numberOfRecipients: 1001,
-        dateScheduledObject: DateTime.fromISO('2021-07-27T13:00:00')
+        clientName: 'client1',
+        dateScheduled: 'date1',
+        scheduledTimeZone: 'tz1',
+        campaignID: 'id1',
+        name: 'name1',
+        numberOfRecipients: 23000,
+        dateScheduledObject: DateTime.fromISO('2021-07-25T13:00:00')
       },
       {
         clientName: 'client2',
@@ -108,13 +108,13 @@ describe('sortCampaigns', () => {
         dateScheduledObject: DateTime.fromISO('2021-07-26T13:00:00')
       },
       {
-        clientName: 'client1',
-        dateScheduled: 'date1',
-        scheduledTimeZone: 'tz1',
-        campaignID: 'id1',
-        name: 'name1',
-        numberOfRecipients: 23000,
-        dateScheduledObject: DateTime.fromISO('2021-07-25T13:00:00')
+        clientName: 'client3',
+        dateScheduled: 'date3',
+        scheduledTimeZone: 'tz3',
+        campaignID: 'id3',
+        name: 'name3',
+        numberOfRecipients: 1001,
+        dateScheduledObject: DateTime.fromISO('2021-07-27T13:00:00')
       }
     ]);
   });

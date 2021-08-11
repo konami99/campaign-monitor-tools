@@ -25,7 +25,7 @@ describe('no clients', () => {
         "blocks": [
           {
             "text": {
-              "text": "```no campaigns```",
+              "text": "```No scheduled campaigns (lower threshold: 1,000)\n```",
               "type": "mrkdwn"
             },
             "type": "section"
