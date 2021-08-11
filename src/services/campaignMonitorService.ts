@@ -10,7 +10,7 @@ export default class CampaignMonitorService {
   }
 
   public static sortCampaigns(campaign1: Campaign, campaign2: Campaign) {
-    if (campaign1.dateScheduledObject > campaign2.dateScheduledObject) return -1;
+    if (campaign1.dateScheduledObject < campaign2.dateScheduledObject) return -1;
     return 1;
   }
 
