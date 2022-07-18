@@ -1,7 +1,7 @@
 {
   "name": "get-scheduled-campaigns",
   "version": "1.0.0",
-  "description": "This is simple REST API example for AWS Lambda By Serverless framwork with TypeScript and MongoDB Atlas.",
+  "description": "A cron job that pulls email schedules from Campaign Monitor",
   "main": "index.js",
   "scripts": {
     "lint": "tslint -p tsconfig.json",
